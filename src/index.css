@@ -1,15 +1,19 @@
 @import url('/node_modules/modern-normalize/modern-normalize.css');
 @import './css/fonts.css';
 
+:root {
+  --color-black: #121417;
+  --color-gray: #12141780;
+  --color-lightgray: #1214171a;
+  --color-white: #fff;
+  --color-blue: #3470ff;
+  --color-accent-blue: #0b44cd;
+}
 body {
-  /* background-color: #000;
-  /* background-image: url('./assets/background.png'); */
-  /* background-size: auto 100%;
-  background-position: center center;
-  background-repeat: no-repeat; */
   font-family: 'Manrope', sans-serif;
   font-weight: 400;
   font-style: normal;
+  line-height: 1.5;
   color: black;
   width: 100%;
   height: 100vh;
@@ -23,7 +27,7 @@ h4,
 h5,
 h6,
 p {
-  margin-top: 0;
+  margin: 0;
 }
 a {
   text-decoration: none;

@@ -1,15 +1,16 @@
 import cars from '../../../res/advertsCars.json';
 import CarCard from '../CarCard/CarCard';
+import { CarList } from './CarCardList.styled';
 
 const CarCardList = () => {
   return (
-    <ul>
+    <CarList>
       {cars.map((element) => (
         <li key={element.id}>
           <CarCard {...element} />{' '}
         </li>
       ))}
-    </ul>
+    </CarList>
   );
 };
 
