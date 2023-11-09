@@ -1,5 +1,5 @@
 import { getMinLengthElement } from '../../helpers';
-import { Button } from '../Button/Button.Styled';
+import { Button } from '../Button/Button.styled';
 import {
   CardContainer,
   DescriptionWrapper,
