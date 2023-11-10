@@ -11,6 +11,12 @@ import { useState } from 'react';
 import DescriptionString from '../DescriptionString/DescriptionString';
 import Backdrop from '../Backdrop/Backdrop';
 import CarModalCard from '../CarModalCard/CarModalCard';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  addFavorite,
+  deleteFavorite,
+  getFavoriteIndexes,
+} from '../../redux/favoritiesSlice';
 
 const CarCard = ({ carItem }) => {
   const {
@@ -28,13 +34,15 @@ const CarCard = ({ carItem }) => {
     accessories,
     functionalities,
   } = carItem;
-  const [favoriteList, setFavoriteList] = useState([]);
+  //   const [favoriteList, setFavoriteList] = useState([]);
+  const favoriteList = useSelector(getFavoriteIndexes);
+  const dispatch = useDispatch();
   const [modalOpen, setModalOpen] = useState(false);
 
   const heartClick = (id) => {
     if (favoriteList.includes(id)) {
-      setFavoriteList((prev) => prev.filter((elem) => elem !== id));
-    } else setFavoriteList((prev) => [...prev, id]);
+      dispatch(deleteFavorite(id));
+    } else dispatch(addFavorite(id));
   };
 
   const modalClose = () => {

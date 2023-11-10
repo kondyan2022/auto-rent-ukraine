@@ -6,10 +6,10 @@ export const Container = styled.div`
   max-width: 375px;
   padding-left: 20px;
   padding-right: 20px;
-  margin: 0 auto;
+ 
   overflow-x: hidden; */
-  outline: 1px dashed yellow;
-
+  outline: 1px dashed green;
+  margin: 0 auto;
   max-width: 1440px;
   padding-left: 128px;
   padding-right: 128px;

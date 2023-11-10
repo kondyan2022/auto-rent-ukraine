@@ -1,11 +1,13 @@
-import CarModalCard from '../../components/CarModalCard/CarModalCard';
-import cardata from '../../../res/advertsCars.json';
+import CarCardFavoriteList from '../../components/CarCardFavoriteList/CarCardFavoriteList';
+import { Container } from '../../components/Container/Container';
+import { FavoritesSection } from './FavoritesPage.styled';
 const FavoritiesPage = () => {
   return (
-    <section>
-      FavoritiesPage
-      <CarModalCard carItem={cardata[0]} />
-    </section>
+    <FavoritesSection>
+      <Container>
+        <CarCardFavoriteList />
+      </Container>
+    </FavoritesSection>
   );
 };
 
