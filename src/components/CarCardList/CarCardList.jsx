@@ -7,7 +7,7 @@ const CarCardList = () => {
     <CarList>
       {cars.map((element) => (
         <li key={element.id}>
-          <CarCard {...element} />{' '}
+          <CarCard carItem={element} />{' '}
         </li>
       ))}
     </CarList>
