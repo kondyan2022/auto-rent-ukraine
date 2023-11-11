@@ -1,10 +1,20 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { getCarItems } from '../../utils/mockapi';
+// Коли є параметри крім автобренда, робимо цей запит для пагінації на фронті, 
+// бо mockapi не дає можливості виконати більш складні запити + поле ціна - рядкове зі знаком валюти    
+export const fetchAllCarsThunk = createAsyncThunk(
+  'cars/fetchAll',
+  async (data) => {
+    const { make } = data;
+    const params = {};
+    if (make && make !== 'All') {
+      params.make = make;
+    }
 
-export const fetchAllCarsThunk = createAsyncThunk('cars/fetchAll', async () => {
-  return await getCarItems();
-});
-
+    return await getCarItems(params);
+  },
+);
+//запит для  пагінації на бекенде
 export const fetchNextPageThunk = createAsyncThunk(
   'cars/fetchNextPage',
   async (data, thunkAPI) => {

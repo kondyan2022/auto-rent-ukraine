@@ -5,7 +5,11 @@ import priceList from '../../helpers/priceList';
 import { Button, MileRangeWrapper, MainForm } from './FilterForm.styled';
 import { useSearchParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { fetchNextPageThunk, reset } from '../../redux/carsSlice';
+import {
+  fetchAllCarsThunk,
+  fetchNextPageThunk,
+  reset,
+} from '../../redux/carsSlice';
 import { useEffect, useRef } from 'react';
 
 const FilterForm = () => {
@@ -15,7 +19,15 @@ const FilterForm = () => {
 
   useEffect(() => {
     if (firstRender.current) {
-      dispatch(fetchNextPageThunk({ make: searchParams.get('make') }));
+      const params = {};
+      for (let [key, value] of searchParams.entries()) {
+        params[key] = value;
+      }
+      if (['milefrom', 'mileto', 'price'].some((elem) => elem in params)) {
+        dispatch(fetchAllCarsThunk({ make: params.make }));
+      } else {
+        dispatch(fetchNextPageThunk({ make: params.make }));
+      }
       firstRender.current = false;
     }
     return () => dispatch(reset());
@@ -37,8 +49,16 @@ const FilterForm = () => {
     }
     console.log(params);
     setSearchParams(params);
-    dispatch(reset());
-    dispatch(fetchNextPageThunk({ make: params.make }));
+
+    if (['milefrom', 'mileto', 'price'].some((elem) => elem in params)) {
+      //пегінація на фронті
+      console.log('frontend pagination');
+      dispatch(fetchAllCarsThunk({ make: params.make }));
+    } else {
+      //пагінація на бекенді
+      dispatch(reset());
+      dispatch(fetchNextPageThunk({ make: params.make }));
+    }
   };
 
   return (

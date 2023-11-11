@@ -3,6 +3,7 @@ import { fetchAllCarsThunk, fetchNextPageThunk } from './thunk';
 
 const initialState = {
   items: [],
+  serverPagination: true,
   page: 0,
   limit: 12,
   isLastPage: false,
@@ -17,6 +18,12 @@ export const carsSlice = createSlice({
       state.page = 0;
       state.items = [];
     },
+    nextPage(state) {
+      state.page = !state.isLastPage ? state.page + 1 : state.page;
+    },
+    setIsLastPage(state, action) {
+      state.isLastPage = action.payload;
+    },
   },
   extraReducers: (builder) =>
     builder
@@ -28,6 +35,9 @@ export const carsSlice = createSlice({
         state.error = null;
         console.log('slice fullfield ', action.payload);
         state.items = action.payload;
+        state.serverPagination = false;
+        state.isLastPage = state.limit >= state.items.length;
+        state.page = 0;
       })
       .addCase(fetchAllCarsThunk.rejected, (state, action) => {
         state.isLoading = false;
@@ -43,28 +53,13 @@ export const carsSlice = createSlice({
           state.page === 0
             ? action.payload
             : [...state.items, ...action.payload];
-        state.page += 1;
+        state.page = action.payload.length > 0 ? state.page + 1 : state.page;
+        state.serverPagination = true;
         state.isLastPage = action.payload.length < state.limit;
       })
       .addCase(fetchNextPageThunk.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       }),
-  // {
-  // [fetchAllCarsThunk.pending](state){
-  //         state.isLoading = true;
-  //               state.error = null;
-  // },
-  // [fetchAllCarsThunk.fulfilled](state, action) {
-  //   state.isLoading = false;
-  //   state.error = null;
-  //   console.log('slice fullfield ', action.payload);
-  //   state.items = action.payload;
-  // },
-  // [fetchAllCarsThunk.rejected](state, action) {
-  //   state.isLoading = false;
-  //   state.error = action.payload;
-  // },
-  //   },
 });
-export const { reset } = carsSlice.actions;
+export const { reset, nextPage, setIsLastPage } = carsSlice.actions;
