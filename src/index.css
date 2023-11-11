@@ -9,6 +9,7 @@
   --color-blue: #3470ff;
   --color-accent-blue: #0b44cd;
   --color-backdrop: #12141780;
+  --color-background-input: #f7f7fb;
 }
 body {
   font-family: 'Manrope', sans-serif;

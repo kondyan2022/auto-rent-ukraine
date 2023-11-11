@@ -1,35 +1,33 @@
-import { useEffect } from 'react';
+// import { useEffect, useState } from 'react';
 import CarCardList from '../../components/CarCardList/CarCardList';
 import { Container } from '../../components/Container/Container';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  fetchNextPageThunk,
-  getIsLastPage,
-  getPageNumber,
-} from '../../redux/carsSlice';
+import { fetchNextPageThunk, getIsLastPage } from '../../redux/carsSlice';
 import { CatalogSection, LoadMoreButton } from './CatalogPage.styled';
+import FilterForm from '../../components/FilterForm/FilterForm';
+import { useSearchParams } from 'react-router-dom';
 
 const CatalogPage = () => {
   const dispatch = useDispatch();
   const isLastPage = useSelector(getIsLastPage);
-  const currentPage = useSelector(getPageNumber);
+  const [searchParams] = useSearchParams();
 
-  useEffect(() => {
-    if (currentPage === 0) {
-      dispatch(fetchNextPageThunk());
-    }
-  }, [dispatch, currentPage]);
+  const handleButtonClick = (event) =>
+    dispatch(fetchNextPageThunk({ make: searchParams.get('make') }))
+      .unwrap()
+      .then(() =>
+        event.target.scrollIntoView({
+          behavior: 'smooth',
+        }),
+      );
 
   return (
     <CatalogSection>
       <Container>
-        <CarCardList></CarCardList>
-
+        <FilterForm />
+        <CarCardList />
         {!isLastPage && (
-          <LoadMoreButton
-            type="button"
-            onClick={() => dispatch(fetchNextPageThunk())}
-          >
+          <LoadMoreButton type="button" onClick={handleButtonClick}>
             Load more
           </LoadMoreButton>
         )}

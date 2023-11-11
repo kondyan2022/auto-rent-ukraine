@@ -12,7 +12,12 @@ const initialState = {
 export const carsSlice = createSlice({
   name: 'cars',
   initialState: initialState,
-  reducers: {},
+  reducers: {
+    reset(state) {
+      state.page = 0;
+      state.items = [];
+    },
+  },
   extraReducers: (builder) =>
     builder
       .addCase(fetchAllCarsThunk.pending, (state) => {
@@ -62,3 +67,4 @@ export const carsSlice = createSlice({
   // },
   //   },
 });
+export const { reset } = carsSlice.actions;

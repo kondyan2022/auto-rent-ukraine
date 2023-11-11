@@ -1,3 +1,5 @@
 import getMinLengthElement from './getMinLengthElement';
+import priceList from './priceList';
+import mileAgeNomalize from './mileAgeNormalize';
 
-export { getMinLengthElement };
+export { getMinLengthElement, priceList, mileAgeNomalize };

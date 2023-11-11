@@ -4,9 +4,9 @@ const Bar = () => {
   return <SpanStyled> | </SpanStyled>;
 };
 
-const DescriptionString = ({ list, wrap }) => {
+const DescriptionString = ({ list, wrapText = false }) => {
   return (
-    <DiscriptionText wrap={wrap}>
+    <DiscriptionText wrapText={wrapText}>
       {list.map((elem, index, arr) => (
         <span key={index}>
           {elem.trim()} {index !== arr.length - 1 && <Bar />}

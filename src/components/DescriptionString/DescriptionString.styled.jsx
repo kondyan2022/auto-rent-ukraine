@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 export const DiscriptionText = styled.p`
-  white-space: ${(props) => (props.wrap ? 'wrap' : 'nowrap')};
+  white-space: ${(props) => (props.wrapText ? 'wrap' : 'nowrap')};
   overflow: hidden;
   text-overflow: ellipsis;
   color: var(--color-gray);
