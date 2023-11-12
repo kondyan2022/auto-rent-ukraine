@@ -52,7 +52,11 @@ const CarCard = ({ carItem }) => {
   return (
     <>
       <CardContainer>
-        <img src={img ? img : photoLink} alt={`${make} ${model}, ${year}`} />
+        <img
+          src={img ? img : photoLink}
+          alt={`${make} ${model}, ${year}`}
+          loading="lazy"
+        />
         <TitleWrapper>
           <h3>
             {make} <span>{model}</span>

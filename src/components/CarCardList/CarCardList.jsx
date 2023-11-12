@@ -71,7 +71,7 @@ const CarCardList = () => {
       }),
     [cars, serverPagination, searchParams],
   );
-  //Тут слайс для пагинации
+  //Тут слайс для пагинації
   const paginateCarlist = useMemo(
     () =>
       paginateCars({
