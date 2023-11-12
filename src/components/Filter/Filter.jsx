@@ -32,7 +32,7 @@ export const Filter = ({
       onChange(filterValue);
     }
   }, [filterValue, onChange]);
-
+  console.log({ filterValue });
   return (
     <CustomSelect>
       <Label>
@@ -55,7 +55,6 @@ export const Filter = ({
           <use href={`${sprite}#icon-chevron-down`}></use>
         </ArrowIcon>
       </Label>
-      {/* </TextInput> */}
       {isListOpen && (
         <ItemListWrapper width={width} listHeight={listHeight}>
           <ItemList listHeight={listHeight}>
@@ -68,7 +67,7 @@ export const Filter = ({
                   setFilterValue(text);
                 }}
               >
-                <ListItemText active={filterValue === item}>
+                <ListItemText active={filterValue === `${item}`}>
                   {item}
                 </ListItemText>
               </li>
