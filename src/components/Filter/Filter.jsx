@@ -24,7 +24,9 @@ export const Filter = ({
   width = '224px',
   listHeight = '272px',
 }) => {
-  const [filterValue, setFilterValue] = useState(initValue);
+  const [filterValue, setFilterValue] = useState(() =>
+    initValue === '' ? 'All' : initValue,
+  );
   const [isListOpen, setIsListOpen] = useState(false);
 
   useEffect(() => {
@@ -32,7 +34,7 @@ export const Filter = ({
       onChange(filterValue);
     }
   }, [filterValue, onChange]);
-  console.log({ filterValue });
+  console.log({ filterValue, initValue, allValue });
   return (
     <CustomSelect>
       <Label>
@@ -67,7 +69,13 @@ export const Filter = ({
                   setFilterValue(text);
                 }}
               >
-                <ListItemText active={filterValue === `${item}`}>
+                <ListItemText
+                  active={
+                    filterValue === allValue || filterValue === ''
+                      ? 'All'
+                      : filterValue === `${item}`
+                  }
+                >
                   {item}
                 </ListItemText>
               </li>
