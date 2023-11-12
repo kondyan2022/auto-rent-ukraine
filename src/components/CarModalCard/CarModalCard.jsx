@@ -59,7 +59,7 @@ const CarModalCard = ({ carItem, closeModal }) => {
           <DescriptionString list={accessories} />
         </li>
         <li>
-          <DescriptionString list={functionalities} wrap />
+          <DescriptionString list={functionalities} wrapText={true} />
         </li>
       </AccessoriesList>
       <Title>Rental Conditions:</Title>
