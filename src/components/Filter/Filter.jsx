@@ -34,7 +34,7 @@ export const Filter = ({
       onChange(filterValue);
     }
   }, [filterValue, onChange]);
-  console.log({ filterValue, initValue, allValue });
+
   return (
     <CustomSelect>
       <Label>
