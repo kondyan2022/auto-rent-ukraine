@@ -4,18 +4,27 @@ import carbrands from '../../../res/carbrand.json';
 import priceList from '../../helpers/priceList';
 import { Button, MileRangeWrapper, MainForm } from './FilterForm.styled';
 import { useSearchParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   fetchAllCarsThunk,
   fetchNextPageThunk,
+  getErrorText,
   reset,
 } from '../../redux/carsSlice';
 import { useEffect, useRef } from 'react';
+import toast from 'react-hot-toast';
 
 const FilterForm = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const dispatch = useDispatch();
   const firstRender = useRef(true);
+  const error = useSelector(getErrorText);
+
+  useEffect(() => {
+    if (error) {
+      toast.error(error || 'Unknown error');
+    }
+  }, [error]);
 
   useEffect(() => {
     if (firstRender.current) {
@@ -47,12 +56,10 @@ const FilterForm = () => {
         params[key] = value;
       }
     }
-    console.log(params);
     setSearchParams(params);
 
     if (['milefrom', 'mileto', 'price'].some((elem) => elem in params)) {
       //пегінація на фронті
-      console.log('frontend pagination');
       dispatch(fetchAllCarsThunk({ make: params.make }));
     } else {
       //пагінація на бекенді
@@ -74,7 +81,7 @@ const FilterForm = () => {
       />
       <Filter
         name={'price'}
-        labelText={'Price/ 1 day'}
+        labelText={'Price/ 1 hour'}
         startText={'To '}
         finishText={'$'}
         initValue={

@@ -1,4 +1,3 @@
-// import cars from '../../../res/advertsCars.json';
 import { useDispatch, useSelector } from 'react-redux';
 import CarCard from '../CarCard/CarCard';
 import { CarList } from './CarCardList.styled';
@@ -13,6 +12,7 @@ import {
 import { useEffect, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { getNumberFromString } from '../../helpers';
+import CarCardListEmpty from './CarCardListEmpty';
 
 const CarCardList = () => {
   const cars = useSelector(getCarItems);
@@ -28,7 +28,7 @@ const CarCardList = () => {
     }
     let carlist = [...cars];
     const price = Number(searchParams.get('price'));
-    console.log({ price });
+
     if (price) {
       carlist = carlist
         .filter(({ rentalPrice }) => getNumberFromString(rentalPrice) <= price)
@@ -38,18 +38,13 @@ const CarCardList = () => {
         );
     }
     const milefrom = Number(searchParams.get('milefrom'));
-    console.log({ milefrom, carlist });
     if (milefrom) {
       carlist = carlist.filter(({ mileage }) => mileage >= milefrom);
     }
     const mileto = Number(searchParams.get('mileto'));
-    console.log({ mileto, carlist });
     if (mileto) {
       carlist = carlist.filter(({ mileage }) => mileage <= mileto);
     }
-
-    // carlist = carlist.slice(0, (currentPage + 1) * limit);
-    console.log('Memo filtering', carlist);
     return carlist;
   };
 
@@ -58,7 +53,6 @@ const CarCardList = () => {
       return cars;
     }
     let carlist = cars.slice(0, (currentPage + 1) * limit);
-    console.log('Memo pagination', carlist);
     return carlist;
   };
   //Тут фільтруємо
@@ -88,12 +82,11 @@ const CarCardList = () => {
       return;
     }
     if ((currentPage + 1) * limit >= carlist.length) {
-      console.log('last page!!!');
       dispatch(setIsLastPage(true));
     }
   }, [currentPage, limit, carlist, dispatch, serverPagination]);
 
-  return (
+  return paginateCarlist.length > 0 ? (
     <CarList>
       {paginateCarlist.map((element) => (
         <li key={element.id}>
@@ -101,6 +94,8 @@ const CarCardList = () => {
         </li>
       ))}
     </CarList>
+  ) : (
+    <CarCardListEmpty />
   );
 };
 

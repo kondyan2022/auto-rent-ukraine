@@ -1,17 +1,24 @@
-// import { useEffect, useState } from 'react';
 import CarCardList from '../../components/CarCardList/CarCardList';
 import { Container } from '../../components/Container/Container';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   fetchNextPageThunk,
+  getErrorText,
   getIsLastPage,
   getServerPaginationState,
   nextPage,
 } from '../../redux/carsSlice';
-import { CatalogSection, LoadMoreButton } from './CatalogPage.styled';
+import {
+  CatalogSection,
+  HiddenTitle,
+  LoadMoreButton,
+} from './CatalogPage.styled';
 import FilterForm from '../../components/FilterForm/FilterForm';
 import { useSearchParams } from 'react-router-dom';
 import { useRef } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
+import ToTop from '../../components/ToTop/ToTop';
+import { useInView } from 'react-intersection-observer';
 
 const CatalogPage = () => {
   const dispatch = useDispatch();
@@ -19,6 +26,11 @@ const CatalogPage = () => {
   const [searchParams] = useSearchParams();
   const serverPagination = useSelector(getServerPaginationState);
   const refAnchor = useRef(null);
+  const error = useSelector(getErrorText);
+  const { ref, inView } = useInView({
+    threshold: 1,
+    rootMargin: '300px',
+  });
 
   const handleButtonClick = () => {
     if (serverPagination) {
@@ -29,10 +41,10 @@ const CatalogPage = () => {
           refAnchor.current.scrollIntoView({
             behavior: 'smooth',
           }),
-        );
+        )
+        .catch(() => toast.error(error));
     } else {
       dispatch(nextPage());
-      //Маленький костиль, хоча можно через useEffect
       setTimeout(
         () =>
           refAnchor.current.scrollIntoView({
@@ -46,6 +58,9 @@ const CatalogPage = () => {
   return (
     <CatalogSection>
       <Container>
+        <div ref={ref}></div>
+
+        <HiddenTitle>Auto Rent Ukraine Catalog</HiddenTitle>
         <FilterForm />
         <CarCardList />
         {!isLastPage && (
@@ -55,6 +70,8 @@ const CatalogPage = () => {
         )}
         <div ref={refAnchor}></div>
       </Container>
+      <Toaster />
+      {!inView && <ToTop />}
     </CatalogSection>
   );
 };

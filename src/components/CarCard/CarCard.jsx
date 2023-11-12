@@ -14,6 +14,7 @@ import CarModalCard from '../CarModalCard/CarModalCard';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   addFavorite,
+  addToFavoriteCache,
   deleteFavorite,
   getFavoriteIndexes,
 } from '../../redux/favoritiesSlice';
@@ -34,7 +35,7 @@ const CarCard = ({ carItem }) => {
     accessories,
     functionalities,
   } = carItem;
-  //   const [favoriteList, setFavoriteList] = useState([]);
+
   const favoriteList = useSelector(getFavoriteIndexes);
   const dispatch = useDispatch();
   const [modalOpen, setModalOpen] = useState(false);
@@ -42,7 +43,10 @@ const CarCard = ({ carItem }) => {
   const heartClick = (id) => {
     if (favoriteList.includes(id)) {
       dispatch(deleteFavorite(id));
-    } else dispatch(addFavorite(id));
+    } else {
+      dispatch(addFavorite(id));
+      dispatch(addToFavoriteCache(carItem));
+    }
   };
 
   const modalClose = () => {

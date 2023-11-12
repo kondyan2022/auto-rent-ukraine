@@ -3,13 +3,11 @@ import { ConditionItem, ConditionList } from './RentalConditionList.styled';
 const RentalConditionList = ({ list }) => {
   const mayBeBadItem = list[2];
   const newList = [...list];
-  console.log(newList);
   if (mayBeBadItem.length > 35) {
     newList.splice(2, 1);
     newList.splice(3, 0, mayBeBadItem);
   }
 
-  console.log(newList);
   return (
     <ConditionList>
       {newList.map((elem, index) => (

@@ -1,13 +1,25 @@
-import { HeaderContainer, Navigation, StyledLink } from './Header.styled';
+import {
+  HeaderContainer,
+  HeaderSection,
+  Navigation,
+  StyledImage,
+  StyledLink,
+} from './Header.styled';
+import logo from '../../img/rent-car.png';
 
 export const Header = () => {
   return (
-    <HeaderContainer>
-      <Navigation>
-        <StyledLink to="/">About</StyledLink>
-        <StyledLink to="/catalog">Catalog</StyledLink>{' '}
-        <StyledLink to="/favorites">Favorites</StyledLink>
-      </Navigation>
-    </HeaderContainer>
+    <HeaderSection>
+      <HeaderContainer>
+        <a href="/">
+          <StyledImage src={logo} alt="logo" />
+        </a>
+        <Navigation>
+          <StyledLink to="/">About</StyledLink>
+          <StyledLink to="/catalog">Catalog</StyledLink>{' '}
+          <StyledLink to="/favorites">Favorites</StyledLink>
+        </Navigation>
+      </HeaderContainer>
+    </HeaderSection>
   );
 };

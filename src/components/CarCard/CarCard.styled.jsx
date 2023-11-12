@@ -21,6 +21,16 @@ export const CardContainer = styled.div`
   }
 `;
 
+export const CardContainerSceleton = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-backdrop-loader);
+  width: 274px;
+  height: 426px;
+  border-radius: 14px;
+`;
+
 export const TitleWrapper = styled.div`
   display: flex;
   justify-content: space-between;

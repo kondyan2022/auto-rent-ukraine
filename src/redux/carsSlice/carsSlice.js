@@ -6,7 +6,7 @@ const initialState = {
   serverPagination: true,
   page: 0,
   limit: 12,
-  isLastPage: false,
+  isLastPage: true,
   isLoading: false,
   error: null,
 };
@@ -24,6 +24,9 @@ export const carsSlice = createSlice({
     setIsLastPage(state, action) {
       state.isLastPage = action.payload;
     },
+    setError(state, action) {
+      state.error = action.payload;
+    },
   },
   extraReducers: (builder) =>
     builder
@@ -33,7 +36,6 @@ export const carsSlice = createSlice({
       .addCase(fetchAllCarsThunk.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        console.log('slice fullfield ', action.payload);
         state.items = action.payload;
         state.serverPagination = false;
         state.isLastPage = state.limit >= state.items.length;
@@ -45,6 +47,7 @@ export const carsSlice = createSlice({
       })
       .addCase(fetchNextPageThunk.pending, (state) => {
         state.isLoading = true;
+        state.isLastPage = true;
       })
       .addCase(fetchNextPageThunk.fulfilled, (state, action) => {
         state.isLoading = false;
@@ -59,6 +62,7 @@ export const carsSlice = createSlice({
       })
       .addCase(fetchNextPageThunk.rejected, (state, action) => {
         state.isLoading = false;
+        state.isLastPage = true;
         state.error = action.payload;
       }),
 });

@@ -3,12 +3,18 @@ import { createPortal } from 'react-dom';
 import { disablePageScroll, enablePageScroll } from 'scroll-lock';
 import { ModalOverlay } from './Backdrop.styled';
 
-const Backdrop = ({ closeModal, children }) => {
+const Backdrop = ({
+  closeOnClick = true,
+  closeOnEscape = true,
+  closeModal,
+  loader = false,
+  children,
+}) => {
   const modalRoot = useRef(document.querySelector('#root-modal'));
 
   useEffect(() => {
     const handleKeyDown = (evt) => {
-      if (evt.code === 'Escape') {
+      if (evt.code === 'Escape' && closeOnClick) {
         closeModal();
       }
     };
@@ -20,12 +26,13 @@ const Backdrop = ({ closeModal, children }) => {
       document.removeEventListener('keydown', handleKeyDown);
       enablePageScroll();
     };
-  }, [closeModal]);
+  }, [closeModal, closeOnClick]);
 
   return createPortal(
     <ModalOverlay
+      loader={loader}
       onClick={(e) => {
-        if (e.target === e.currentTarget) {
+        if (e.target === e.currentTarget && closeOnEscape) {
           closeModal();
         }
       }}

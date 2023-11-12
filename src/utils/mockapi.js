@@ -3,7 +3,6 @@ import axios from 'axios';
 axios.defaults.baseURL = 'https://654bea665b38a59f28efe5bf.mockapi.io/advert/';
 
 export const getCarItems = async (params) => {
-  console.log('getCarItems params:', params);
   const { data } = await axios.get('/advert', { params });
   return data;
 };
@@ -11,5 +10,5 @@ export const getCarItems = async (params) => {
 export const getCarById = async (id) => {
   const params = { id };
   const { data } = await axios.get(`/advert/`, { params });
-  return data[0];
+  return { data: data[0], id }; // якщо масив пустий, то потрібен ID
 };

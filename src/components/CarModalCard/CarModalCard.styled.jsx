@@ -2,7 +2,6 @@ import styled from '@emotion/styled';
 
 export const CarModalContainer = styled.div`
   position: relative;
-  outline: 2px dashed red;
   width: 541px;
   height: 752px;
   padding: 40px;

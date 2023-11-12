@@ -9,6 +9,7 @@ export const ModalOverlay = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--color-backdrop);
+  background-color: ${(props) =>
+    props.loader ? 'var(--color-backdrop-loader)' : ' var(--color-backdrop)'};
   z-index: 100;
 `;
