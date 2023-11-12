@@ -11,7 +11,7 @@ export const Header = () => {
   return (
     <HeaderSection>
       <HeaderContainer>
-        <a href="./">
+        <a href="/auto-rent-ukraine/">
           <StyledImage src={logo} alt="logo" />
         </a>
         <Navigation>
