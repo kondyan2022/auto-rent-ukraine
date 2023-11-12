@@ -154,7 +154,7 @@ Error generating stack: `+i.message+`
   width: 50px;
   height: 50px;
   object-fit: cover;
-`,KE="/auto-rent-ukraine/assets/rent-car-3cfe6409.png",YE=()=>C.jsx(WE,{children:C.jsxs(HE,{children:[C.jsx("a",{href:"./",children:C.jsx(GE,{src:KE,alt:"logo"})}),C.jsxs(VE,{children:[C.jsx(Au,{to:"/",children:"About"}),C.jsx(Au,{to:"/catalog",children:"Catalog"})," ",C.jsx(Au,{to:"/favorites",children:"Favorites"})]})]})}),QE=()=>C.jsxs(C.Fragment,{children:[C.jsx(YE,{}),C.jsx(k.Suspense,{fallback:null,children:C.jsx(_S,{})})]}),XE="/auto-rent-ukraine/assets/hero-b0c9fd4c.jpg",qE=G.section`
+`,KE="/auto-rent-ukraine/assets/rent-car-3cfe6409.png",YE=()=>C.jsx(WE,{children:C.jsxs(HE,{children:[C.jsx("a",{href:"/auto-rent-ukraine/",children:C.jsx(GE,{src:KE,alt:"logo"})}),C.jsxs(VE,{children:[C.jsx(Au,{to:"/",children:"About"}),C.jsx(Au,{to:"/catalog",children:"Catalog"})," ",C.jsx(Au,{to:"/favorites",children:"Favorites"})]})]})}),QE=()=>C.jsxs(C.Fragment,{children:[C.jsx(YE,{}),C.jsx(k.Suspense,{fallback:null,children:C.jsx(_S,{})})]}),XE="/auto-rent-ukraine/assets/hero-b0c9fd4c.jpg",qE=G.section`
   padding-top: 150px;
   padding-bottom: 50px;
   width: 100%;
