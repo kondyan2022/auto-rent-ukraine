@@ -2,12 +2,19 @@ import { Route, Routes } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import SharedLayout from './components/SharedLayout/SharedLayout';
-import AboutPage from './pages/AboutPage/AboutPage';
-import CatalogPage from './pages/CatalogPage/CatalogPage';
-import FavoritiesPage from './pages/FavoritesPage/FavoritesPage';
+// import AboutPage from './pages/AboutPage/AboutPage';
+// import CatalogPage from './pages/CatalogPage/CatalogPage';
+// import FavoritiesPage from './pages/FavoritesPage/FavoritesPage';
 import { getIsLoading } from './redux/carsSlice';
 import Backdrop from './components/Backdrop/Backdrop';
 import { RotatingLines } from 'react-loader-spinner';
+import { lazy } from 'react';
+
+const AboutPage = lazy(() => import('./pages/AboutPage/AboutPage'));
+const CatalogPage = lazy(() => import('./pages/CatalogPage/CatalogPage'));
+const FavoritiesPage = lazy(() =>
+  import('./pages/FavoritesPage/FavoritesPage'),
+);
 
 function App() {
   const isLoading = useSelector(getIsLoading);
