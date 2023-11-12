@@ -11,7 +11,7 @@ export const Header = () => {
   return (
     <HeaderSection>
       <HeaderContainer>
-        <a href="/">
+        <a href="./">
           <StyledImage src={logo} alt="logo" />
         </a>
         <Navigation>
