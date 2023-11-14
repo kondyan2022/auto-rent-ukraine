@@ -26,8 +26,8 @@ function App() {
           <Route index element={<AboutPage />} />
           <Route path="/catalog" element={<CatalogPage />} />
           <Route path="/favorites" element={<FavoritiesPage />} />
-          <Route path="*" element={<AboutPage />} />
         </Route>
+        <Route path="*" element={<AboutPage />} />
       </Routes>
       {/* {isLoading && (
         <Backdrop closeOnClick={false} closeOnEscape={false} loader>
