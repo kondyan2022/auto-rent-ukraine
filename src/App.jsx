@@ -2,34 +2,24 @@ import { Route, Routes } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import SharedLayout from './components/SharedLayout/SharedLayout';
-import AboutPage from './pages/AboutPage/AboutPage';
-import CatalogPage from './pages/CatalogPage/CatalogPage';
-import FavoritiesPage from './pages/FavoritesPage/FavoritesPage';
+// import AboutPage from './pages/AboutPage/AboutPage';
+// import CatalogPage from './pages/CatalogPage/CatalogPage';
+// import FavoritiesPage from './pages/FavoritesPage/FavoritesPage';
 import { getIsLoading } from './redux/carsSlice';
 import Backdrop from './components/Backdrop/Backdrop';
 import { RotatingLines } from 'react-loader-spinner';
-import { lazy, useEffect, useState } from 'react';
+import { lazy } from 'react';
 
-// const AboutPage = lazy(() => import('./pages/AboutPage/AboutPage'));
-// const CatalogPage = lazy(() => import('./pages/CatalogPage/CatalogPage'));
-// const FavoritiesPage = lazy(() =>
-//   import('./pages/FavoritesPage/FavoritesPage'),
-// );
+const AboutPage = lazy(() => import('./pages/AboutPage/AboutPage'));
+const CatalogPage = lazy(() => import('./pages/CatalogPage/CatalogPage'));
+const FavoritiesPage = lazy(() =>
+  import('./pages/FavoritesPage/FavoritesPage'),
+);
 
 function App() {
-  const [loading, setloading] = useState(true);
+  const isLoading = useSelector(getIsLoading);
 
-  // const isLoading = useSelector(getIsLoading);
-  useEffect(() => {
-    setTimeout(() => {
-      setloading(false);
-    }, 100);
-  }, []);
-  //Имитируем задержку загрузки
-
-  return loading ? (
-    <div>Loading...</div>
-  ) : (
+  return (
     <>
       <Routes>
         <Route path="/" element={<SharedLayout />}>
@@ -39,7 +29,7 @@ function App() {
         </Route>
         <Route path="*" element={<AboutPage />} />
       </Routes>
-      {/* {isLoading && (
+      {isLoading && (
         <Backdrop closeOnClick={false} closeOnEscape={false} loader>
           <RotatingLines
             strokeColor="var(--color-blue)"
@@ -49,7 +39,7 @@ function App() {
             visible={true}
           />
         </Backdrop>
-      )} */}
+      )}
     </>
   );
 }
