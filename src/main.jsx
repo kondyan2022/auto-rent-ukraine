@@ -9,11 +9,9 @@ import { Suspense } from 'react';
 ReactDOM.createRoot(document.getElementById('root')).render(
   // <React.StrictMode>
   <Provider store={store}>
-    <Suspense fallback={<div>loading...</div>}>
-      <BrowserRouter basename="/auto-rent-ukraine/">
-        <App />
-      </BrowserRouter>
-    </Suspense>
+    <BrowserRouter basename="/auto-rent-ukraine/">
+      <App />
+    </BrowserRouter>
   </Provider>,
   // {/* </React.StrictMode> */}
 );
