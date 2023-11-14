@@ -1,4 +1,4 @@
-import{n as t,C as n,j as e}from"./index-f4b26cd4.js";const o="/auto-rent-ukraine/assets/hero-b0c9fd4c.jpg",r=t.section`
+import{n as t,C as n,j as e}from"./index-c983fdb3.js";const o="/auto-rent-ukraine/assets/hero-b0c9fd4c.jpg",r=t.section`
   padding-top: 150px;
   padding-bottom: 50px;
   width: 100%;
