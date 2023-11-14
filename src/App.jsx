@@ -8,7 +8,7 @@ import FavoritiesPage from './pages/FavoritesPage/FavoritesPage';
 import { getIsLoading } from './redux/carsSlice';
 import Backdrop from './components/Backdrop/Backdrop';
 import { RotatingLines } from 'react-loader-spinner';
-import { lazy } from 'react';
+import { lazy, useEffect, useState } from 'react';
 
 // const AboutPage = lazy(() => import('./pages/AboutPage/AboutPage'));
 // const CatalogPage = lazy(() => import('./pages/CatalogPage/CatalogPage'));
@@ -17,9 +17,19 @@ import { lazy } from 'react';
 // );
 
 function App() {
-  // const isLoading = useSelector(getIsLoading);
+  const [loading, setloading] = useState(true);
 
-  return (
+  // const isLoading = useSelector(getIsLoading);
+  useEffect(() => {
+    setTimeout(() => {
+      setloading(false);
+    }, 100);
+  }, []);
+  //Имитируем задержку загрузки
+
+  return loading ? (
+    <div>Loading...</div>
+  ) : (
     <>
       <Routes>
         <Route path="/" element={<SharedLayout />}>
