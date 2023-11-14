@@ -1,4 +1,4 @@
-import{q as F,t as te,v as re,n as f,j as c,u as oe,r as u,B as ie,p as se,w as ne,o as ae,L as le}from"./index-89aa5614.js";function J(e=F){const t=e===F?te:re(e);return function(){const{store:s}=t();return s}}const ce=J();function de(e=F){const t=e===F?ce:J(e);return function(){return t().dispatch}}const pe=de(),ue=e=>e.favorites.indexes,St=e=>e.favorites.cacheItems,fe=e=>e.reduce((t,r)=>t.length>r.length?r:t),he=()=>{const e=[];for(let t=30;t<=500;t+=10)e.push(t);return e},Tt=he(),ge=f.div`
+import{q as F,t as te,v as re,n as f,j as c,u as oe,r as u,B as ie,p as se,w as ne,o as ae,L as le}from"./index-bb260936.js";function J(e=F){const t=e===F?te:re(e);return function(){const{store:s}=t();return s}}const ce=J();function de(e=F){const t=e===F?ce:J(e);return function(){return t().dispatch}}const pe=de(),ue=e=>e.favorites.indexes,St=e=>e.favorites.cacheItems,fe=e=>e.reduce((t,r)=>t.length>r.length?r:t),he=()=>{const e=[];for(let t=30;t<=500;t+=10)e.push(t);return e},Tt=he(),ge=f.div`
   padding-top: 12px;
   padding-bottom: 12px;
   font-family: Manrope;
