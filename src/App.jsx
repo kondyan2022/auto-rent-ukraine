@@ -17,7 +17,7 @@ import { lazy } from 'react';
 // );
 
 function App() {
-  const isLoading = useSelector(getIsLoading);
+  // const isLoading = useSelector(getIsLoading);
 
   return (
     <>
@@ -29,7 +29,7 @@ function App() {
           <Route path="*" element={<AboutPage />} />
         </Route>
       </Routes>
-      {isLoading && (
+      {/* {isLoading && (
         <Backdrop closeOnClick={false} closeOnEscape={false} loader>
           <RotatingLines
             strokeColor="var(--color-blue)"
@@ -39,7 +39,7 @@ function App() {
             visible={true}
           />
         </Backdrop>
-      )}
+      )} */}
     </>
   );
 }
